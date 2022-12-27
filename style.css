@@ -1,0 +1,238 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+  outline: none;
+  list-style: none;
+}
+
+:root {
+  --match: #4caf4f77;
+  --noMatch: #e925228c;
+  --notPlaced: #ffa826cb;
+  --main-color: #b9d7fa;
+}
+
+body {
+  height: 100vh;
+  background-color: #f8f8f89a;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  margin-top: 30px;
+}
+
+.line {
+  display: flex;
+  gap: 5px;
+  position: relative;
+  margin: 0 5px;
+}
+.letter {
+  display: flex;
+  width: 70px;
+  height: 70px;
+  justify-content: center;
+  align-items: center;
+  font-size: 3.3em !important;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #646464;
+  transition: 0.2s ease-in-out;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 0 5px #bbbbbba6;
+  border: 2px solid #cfcece;
+}
+
+.history {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  height: 229px;
+  overflow: auto;
+  padding: 5px 0;
+  position: relative;
+}
+
+.match {
+  border: none !important;
+  background-color: var(--match) !important;
+}
+
+.noMatch {
+  opacity: 0.15;
+}
+
+.notPlaced {
+  border: none !important;
+  background-color: var(--notPlaced) !important;
+}
+
+/*************************/
+
+.btn-container {
+  cursor: pointer;
+  font-size: 25px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  color: #cfcece;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.level-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff67;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(1px);
+  opacity: 1;
+  /* transform: translateY(100%); */
+}
+.level-overlay.active {
+  opacity: 0;
+  transform: translateY(100%) !important;
+}
+.level-box {
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 20px #00000033;
+  padding: 20px 20px;
+}
+.level-box h3 {
+  text-align: center;
+  margin-bottom: 60px;
+  font-size: 1.5em;
+  color: #333;
+}
+.level-box .level-list {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  font-size: 22px;
+}
+.level-box .level-list li {
+  cursor: pointer;
+  width: 180px;
+  height: 130px;
+  font-size: 3em;
+  box-shadow: 0 0 5px #bbbbbba6;
+  border-radius: 10px;
+  padding-left: 10px;
+  color: #333;
+  position: relative;
+}
+
+.level-box .level-list li::before {
+  content: attr(data-best);
+  display: block;
+  position: absolute;
+  bottom: 5px;
+  z-index: 50;
+  font-size: 14px;
+  left: 10px;
+  color: #29b6f6;
+}
+
+.keyboard {
+  left: 50%;
+  bottom: 25px;
+  transform: translateX(-50%);
+  border-radius: 10px;
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+
+  z-index: 2;
+  gap: 5px;
+}
+
+.keyboard .key {
+  width: 45px;
+  height: 45px;
+  text-transform: capitalize;
+  font-size: 22px;
+  font-weight: 600;
+  color: #343434;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 0 5px #bbbbbb5e;
+  border: 2px solid #cfcece;
+}
+
+/*************************/
+::-webkit-scrollbar {
+  width: 0px;
+  padding: 15px 5px;
+}
+
+::-webkit-scrollbar-track {
+  padding: 15px 5px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #61616100;
+  border-radius: 15px;
+}
+:hover::-webkit-scrollbar-thumb {
+  background-color: #61616171;
+}
+
+.shake {
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  position: relative;
+}
+.alert {
+  visibility: hidden;
+  margin: 15px auto;
+}
+.myWord:has(.shake) + .alert {
+  visibility: visible;
+  text-align: center;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-6px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(6px, 0, 0);
+  }
+}
